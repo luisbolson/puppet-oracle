@@ -1,5 +1,5 @@
 $host_instances = {
-  $fqdn => {
+  "${fqdn}" => {
     ip            => $ipaddress,
     host_aliases  => $hostname,
   },
