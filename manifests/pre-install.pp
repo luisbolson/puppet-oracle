@@ -18,7 +18,7 @@ service { 'iptables':
   enable    => false,
   ensure    => false,
   hasstatus => true,
-}asasas
+}
 
 # set the tmpfsassasaa
 mount { '/dev/shm':
@@ -26,7 +26,7 @@ mount { '/dev/shm':
   atboot      => true,
   device      => 'tmpfs',
   fstype      => 'tmpfs',
-  options     => "size=${oramem}",
+  options     => "size=${oramem}M",
 }
 $all_groups = ['oinstall','dba' ,'oper']
  group { $all_groups :
