@@ -1,3 +1,5 @@
+$oramem = $memorysize_mb / 2
+
 $host_instances = {
   "${fqdn}" => {
     ip            => $ipaddress,
@@ -10,7 +12,7 @@ $host_instances = {
 }
 
 create_resources('host',$host_instances)
-/*
+
 # disable the firewall
 service { 'iptables':
   enable    => false,
@@ -18,24 +20,19 @@ service { 'iptables':
   hasstatus => true,
 }
 
-# set the swap ,forge puppet module petems-swap_file
-#class { 'swap_file':
-#  swapfile     => '/var/swap.1',
-#  swapfilesize => '8192000000'
-#}
-
 # set the tmpfs
 mount { '/dev/shm':
   ensure      => present,
   atboot      => true,
   device      => 'tmpfs',
   fstype      => 'tmpfs',
-  options     => 'size=3500m',
+  options     => "size=${oramem}",
 }
 $all_groups = ['oinstall','dba' ,'oper']
  group { $all_groups :
   ensure      => present,
 }
+/*
  user { 'oracle' :
   ensure      => present,
   uid         => 500,
