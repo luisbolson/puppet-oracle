@@ -5,7 +5,7 @@ $host_instances = {
   },
   localhost => {
     ip            => '127.0.0.1',
-    host_aliases  =>  'localhost.localdomain,localhost4,localhost4.localdomain4',
+    host_aliases  =>  ['localhost.localdomain','localhost4','localhost4.localdomain4'],
   },
 }
 
