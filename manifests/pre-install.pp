@@ -26,7 +26,7 @@ mount { '/dev/shm':
   atboot      => true,
   device      => 'tmpfs',
   fstype      => 'tmpfs',
-  options     => "size=${oramem}M",
+  options     => "size=${oramem}",
 }
 $all_groups = ['oinstall','dba' ,'oper']
  group { $all_groups :
