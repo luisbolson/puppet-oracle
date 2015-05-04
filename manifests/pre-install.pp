@@ -1,4 +1,5 @@
 $oramem = $memorysize_mb / 2
+$orapwd = sha1('oracle')
 
 $host_instances = {
   "${fqdn}" => {
@@ -20,7 +21,8 @@ service { 'iptables':
   hasstatus => true,
 }
 
-# set the tmpfsassasaa
+# set the tmpfs - will be worked on later
+/*
 mount { '/dev/shm':
   ensure      => present,
   atboot      => true,
@@ -28,18 +30,19 @@ mount { '/dev/shm':
   fstype      => 'tmpfs',
   options     => "size=${oramem}M",
 }
+*/
 $all_groups = ['oinstall','dba' ,'oper']
- group { $all_groups :
+group { $all_groups :
   ensure      => present,
 }
-/*
- user { 'oracle' :
+
+user { 'oracle' :
   ensure      => present,
   uid         => 500,
   gid         => 'oinstall',
   groups      => ['oinstall','dba','oper'],
   shell       => '/bin/bash',
-  password    => '$1$DSJ51vh6$4XzzwyIOk6Bi/54kglGk3.',
+  password    => "${orapwd}",
   home        => "/home/oracle",
   comment     => "This user oracle was created by Puppet",
   require     => Group[$all_groups],
