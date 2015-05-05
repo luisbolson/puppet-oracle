@@ -4,7 +4,7 @@ $confdir = "$settings::confdir"
 
 #$oramem     = $memorysize_mb / 2
 
-filebucket { 'main':
+file { 
   backup => false, }
 
 $host_instances = {
