@@ -11,4 +11,4 @@ git clone https://github.com/luisbolson/puppet-oracle.git puppet
 export FACTER_awskey=$1
 export FACTER_awssecret=$2
 
-puppet apply --verbose /etc/puppet/manifests/pre-install.pp
+puppet apply --verbose /etc/puppet/manifests/pre-install.pp > /tmp/puppet.log
