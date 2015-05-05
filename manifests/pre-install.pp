@@ -94,7 +94,7 @@ package { $install:
 package { 'oracle-rdbms-server-12cR1-preinstall':
   ensure  => present,
   provider => 'rpm',
-  source  => "${settings::confdir}/rpm/oracle-rdbms-server-11gR2-preinstall-1.0-10.el6.x86_64.rpm",
+  source  => "${settings::confdir}/files/oracle-rdbms-server-11gR2-preinstall-1.0-10.el6.x86_64.rpm",
   require => Package[$install],
 }
 /*
