@@ -85,6 +85,10 @@ sysctl { 'net.core.wmem_max':             ensure => 'present', permanent => 'yes
 }
 */
 
+file {"${settings::confdir}/modules/oradb/files":
+    ensure  =>  directory,
+}
+
 s3 { "${settings::confdir}/modules/oradb/files/linuxamd64_12102_database_1of2.zip":
     # Required paramters:
     ensure              => present,
@@ -93,7 +97,10 @@ s3 { "${settings::confdir}/modules/oradb/files/linuxamd64_12102_database_1of2.zi
     secret_access_key   => $awssecret,
     # Optional parameters:
     region              => 'us-east-1', # Defaults to us-east-1
-    require             => Package['aws-sdk'],
+    require             => [
+      Package['aws-sdk'],
+      File["${settings::confdir}/modules/oradb/files"],
+    ],
 }
 
 s3 { "${settings::confdir}/modules/oradb/files/linuxamd64_12102_database_2of2.zip":
@@ -104,7 +111,7 @@ s3 { "${settings::confdir}/modules/oradb/files/linuxamd64_12102_database_2of2.zi
     secret_access_key   => $awssecret,
     # Optional parameters:
     region              => 'us-east-1', # Defaults to us-east-1
-    require             => Package['aws-sdk'],
+    require             => S3["${settings::confdir}/modules/oradb/files/linuxamd64_12102_database_1of2.zip"],
 }
 
 $install = [ 'binutils.x86_64','bind-utils.x86_64','compat-libstdc++-33.x86_64', 'glibc.x86_64','ksh.x86_64','libaio.x86_64',
