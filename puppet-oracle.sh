@@ -13,3 +13,4 @@ export FACTER_awssecret=$2
 
 puppet apply --verbose /etc/puppet/manifests/pre-install.pp
 
+ss
