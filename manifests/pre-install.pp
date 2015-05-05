@@ -2,11 +2,6 @@ $pass = 'ora123'
 $salt = 'xyz'
 $confdir = "$settings::confdir"
 
-#$oramem     = $memorysize_mb / 2
-
-file { "${settings::confdir}/modules/oradb/":
-  backup => false, }
-
 $host_instances = {
   "${fqdn}" => {
     ip            => $ipaddress,
@@ -101,7 +96,7 @@ package { 'oracle-rdbms-server-11gR2-preinstall-1.0-10.el6.x86_64':
   require => Package[$install],
 }
 
-$puppetDownloadMntPoint = "puppet:///modules/oradb/"
+#$puppetDownloadMntPoint = "puppet:///modules/oradb/"
 
 oradb::installdb{ '12.1.0.2_Linux-x86-64':
   version                => '12.1.0.2',
@@ -116,5 +111,4 @@ oradb::installdb{ '12.1.0.2_Linux-x86-64':
   group_oper             => 'oper',
   downloadDir            => '/u01/app/oracle/install',
   zipExtract             => true,
-  puppetDownloadMntPoint => $puppetDownloadMntPoint,
 }
