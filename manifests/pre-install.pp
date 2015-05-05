@@ -6,6 +6,7 @@ $confdir = "$settings::confdir"
 file { "${settings::confdir}/modules/oradb/":
   backup => false, }
 
+File { backup => false, }
 
 $host_instances = {
   "${fqdn}" => {
