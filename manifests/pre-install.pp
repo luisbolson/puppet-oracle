@@ -122,7 +122,7 @@ package { 'oracle-rdbms-server-11gR2-preinstall-1.0-10.el6.x86_64':
   source  => "${settings::confdir}/files/oracle-rdbms-server-11gR2-preinstall-1.0-10.el6.x86_64.rpm",
   require => Package[$install],
 }
-/*
+
 $puppetDownloadMntPoint = "puppet:///modules/oradb/"
 
 oradb::installdb{ '12.1.0.2_Linux-x86-64':
@@ -139,4 +139,9 @@ oradb::installdb{ '12.1.0.2_Linux-x86-64':
   downloadDir            => '/u01/app/oracle/install',
   zipExtract             => true,
   puppetDownloadMntPoint => $puppetDownloadMntPoint,
-}*/
+  require => [
+    S3["${settings::confdir}/modules/oradb/files/linuxamd64_12102_database_1of2.zip"],
+    S3["${settings::confdir}/modules/oradb/files/linuxamd64_12102_database_2of2.zip"],
+    Package['oracle-rdbms-server-11gR2-preinstall-1.0-10.el6.x86_64'],
+  ],
+}
