@@ -98,12 +98,12 @@ package { 'oracle-rdbms-server-11gR2-preinstall-1.0-10.el6.x86_64':
   require => Package[$install],
 }
 
-$puppetDownloadMntPoint = "puppet:///modules/oradb/"
+$puppetDownloadMntPoint = "puppet:///files/"
 
 oradb::installdb{ '12.1.0.2_Linux-x86-64':
   version                => '12.1.0.2',
-  file                   => 'V46095-01',
-  databaseType           => 'SE',
+  file                   => 'linuxamd64_12102_database_2of2',
+  databaseType           => 'EE',
   oracleBase             => '/u01/app/oracle',
   oracleHome             => '/u01/app/oracle/product/12.1.0.2/db',
   bashProfile            => true,
@@ -111,7 +111,7 @@ oradb::installdb{ '12.1.0.2_Linux-x86-64':
   group                  => 'dba',
   group_install          => 'oinstall',
   group_oper             => 'oper',
-  downloadDir            => '/data/install',
+  downloadDir            => '/u01/app/oracle/install',
   zipExtract             => true,
   puppetDownloadMntPoint => $puppetDownloadMntPoint,
 }
