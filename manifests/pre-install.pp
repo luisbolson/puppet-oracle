@@ -31,6 +31,7 @@ mount { '/dev/shm':
   options     => "size=${oramem}M",
 }
 */
+
 $all_groups = ['oinstall','dba' ,'oper']
 group { $all_groups :
   ensure      => present,
@@ -48,6 +49,8 @@ user { 'oracle' :
   require     => Group[$all_groups],
   managehome  => true,
 }
+
+/*
 sysctl { 'kernel.msgmnb':                 ensure => 'present', permanent => 'yes', value => '65536',}
 sysctl { 'kernel.msgmax':                 ensure => 'present', permanent => 'yes', value => '65536',}
 sysctl { 'kernel.shmmax':                 ensure => 'present', permanent => 'yes', value => '2588483584',}
