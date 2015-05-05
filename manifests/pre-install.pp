@@ -2,6 +2,11 @@ $pass = 'ora123'
 $salt = 'xyz'
 $confdir = "$settings::confdir"
 
+
+file { "${settings::confdir}/modules/oradb/":
+  backup => false, }
+
+
 $host_instances = {
   "${fqdn}" => {
     ip            => $ipaddress,
