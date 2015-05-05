@@ -90,7 +90,8 @@ sysctl { 'net.core.wmem_max':             ensure => 'present', permanent => 'yes
   ensure  => present,
 }
 
- package { 'oracle-rdbms-server-12cR1-preinstall.x86_64':
+package { 'oracle-rdbms-server-12cR1-preinstall.x86_64':
   ensure  => present,
-  source  => "${settings::confdir}/rpm/oracle-rdbms-server-12cR1-preinstall-1.0-11.el6.x86_64.rpm",
+  provider => 'rpm',
+  source  => "${settings::confdir}/rpm/oracle-rdbms-server-11gR2-preinstall-1.0-10.el6.x86_64.rpm",
 }
