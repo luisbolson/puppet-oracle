@@ -2,6 +2,10 @@ $orapwd = 'ora123'
 
 $oramem     = $memorysize_mb / 2
 
+
+$orapwdhash = generate('/bin/sh', '-c', "openssl passwd -1 -salt 123xyz $orapwd | tr -d '\n'")
+
+
 $host_instances = {
   "${fqdn}" => {
     ip            => $ipaddress,
@@ -44,7 +48,7 @@ user { 'oracle' :
   gid         => 'oinstall',
   groups      => ['oinstall','dba','oper'],
   shell       => '/bin/bash',
-  password    => generate('/bin/sh', '-c', "mkpasswd -m sha-512 ${orapwd} | tr -d '\n'"),
+  password    => "${orapwdhash}",
   home        => "/home/oracle",
   comment     => "This user oracle was created by Puppet",
   require     => Group[$all_groups],
