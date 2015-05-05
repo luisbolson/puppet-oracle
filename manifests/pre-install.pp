@@ -102,7 +102,7 @@ package { 'oracle-rdbms-server-11gR2-preinstall-1.0-10.el6.x86_64':
   require => Package[$install],
 }
 
-$puppetDownloadMntPoint = "puppet:///modules/oradb/"
+$puppetDownloadMntPoint = "puppet:///modules/oradb/a"
 
 oradb::installdb{ '12.1.0.2_Linux-x86-64':
   version                => '12.1.0.2',
