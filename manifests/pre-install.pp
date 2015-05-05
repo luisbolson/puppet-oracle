@@ -102,7 +102,7 @@ $puppetDownloadMntPoint = "puppet:///files/"
 
 oradb::installdb{ '12.1.0.2_Linux-x86-64':
   version                => '12.1.0.2',
-  file                   => 'linuxamd64_12102_database_2of2',
+  file                   => 'linuxamd64_12102_database',
   databaseType           => 'EE',
   oracleBase             => '/u01/app/oracle',
   oracleHome             => '/u01/app/oracle/product/12.1.0.2/db',
