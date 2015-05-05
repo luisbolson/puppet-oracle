@@ -1,9 +1,8 @@
 $pass = 'ora123'
 $salt = 'xyz'
+$confdir = "$settings::confdir"
 
-$oramem     = $memorysize_mb / 2
-
-notice "$settings::confdir"
+#$oramem     = $memorysize_mb / 2
 
 $host_instances = {
   "${fqdn}" => {
@@ -93,5 +92,5 @@ sysctl { 'net.core.wmem_max':             ensure => 'present', permanent => 'yes
 
  package { 'oracle-rdbms-server-12cR1-preinstall.x86_64':
   ensure  => present,
-  source  => 'rpm/oracle-rdbms-server-12cR1-preinstall-1.0-11.el6.x86_64.rpm',
+  source  => "${settings::confdir}/rpm/oracle-rdbms-server-12cR1-preinstall-1.0-11.el6.x86_64.rpm",
 }
