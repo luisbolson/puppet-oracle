@@ -44,7 +44,7 @@ user { 'oracle' :
   gid         => 'oinstall',
   groups      => ['oinstall','dba','oper'],
   shell       => '/bin/bash',
-  password    => generate('/bin/sh', '-c', "mkpasswd -m sha-512 ${orapwd} | tr -d '\n'"),
+  password    => "${orapwd}",
   home        => "/home/oracle",
   comment     => "This user oracle was created by Puppet",
   require     => Group[$all_groups],
