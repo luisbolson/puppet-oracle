@@ -1,7 +1,9 @@
-$oramem = $memorysize_mb / 2
-$orapwd = sha1("ora123")
+$oraclepassword = 'ora123'
+
+$oramem     = $memorysize_mb / 2
+$orapwdhash = sha1($oraclepassword)
 $orapwdsign = '$1$'
-notice "${orapwdsign}${orapwd}"
+$orapwd     = "${orapwdsign}${orapwdhash}"
 
 $host_instances = {
   "${fqdn}" => {
