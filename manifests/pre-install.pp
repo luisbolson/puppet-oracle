@@ -1,6 +1,9 @@
 $pass = 'ora123'
 $salt = 'xyz'
+
 $oramem     = $memorysize_mb / 2
+
+notice "$settings::confdir"
 
 $host_instances = {
   "${fqdn}" => {
