@@ -1,5 +1,5 @@
 $oramem = $memorysize_mb / 2
-$orapwd = sha1('oracle')
+$orapwd = sha1("oracle")
 
 $host_instances = {
   "${fqdn}" => {
