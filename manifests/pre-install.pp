@@ -82,21 +82,22 @@ sysctl { 'net.core.wmem_max':             ensure => 'present', permanent => 'yes
 }
 */
 
- $install = [ 'binutils.x86_64','bind-utils.x86_64','compat-libstdc++-33.x86_64', 'glibc.x86_64','ksh.x86_64','libaio.x86_64',
+$install = [ 'binutils.x86_64','bind-utils.x86_64','compat-libstdc++-33.x86_64', 'glibc.x86_64','ksh.x86_64','libaio.x86_64',
              'libgcc.x86_64', 'libstdc++.x86_64', 'make.x86_64','compat-libcap1.x86_64', 'gcc.x86_64',
              'gcc-c++.x86_64','glibc-devel.x86_64','libaio-devel.x86_64','libstdc++-devel.x86_64',
              'sysstat.x86_64','unixODBC-devel','glibc.i686','libXext.x86_64','libXtst.x86_64','bc.x86_64',
              'nfs-utils.x86_64','smartmontools.x86_64','xorg-x11-utils.x86_64','xorg-x11-xauth.x86_64']
- package { $install:
+package { $install:
   ensure  => present,
 }
 
-package { 'oracle-rdbms-server-12cR1-preinstall.x86_64':
+package { 'oracle-rdbms-server-12cR1-preinstall':
   ensure  => present,
   provider => 'rpm',
   source  => "${settings::confdir}/rpm/oracle-rdbms-server-11gR2-preinstall-1.0-10.el6.x86_64.rpm",
+  require => Package[$install],
 }
-
+/*
 $puppetDownloadMntPoint = "puppet:///modules/oradb/"
 
 oradb::installdb{ '12.1.0.2_Linux-x86-64':
@@ -113,4 +114,4 @@ oradb::installdb{ '12.1.0.2_Linux-x86-64':
   downloadDir            => '/data/install',
   zipExtract             => true,
   puppetDownloadMntPoint => $puppetDownloadMntPoint,
-}
+}*/
