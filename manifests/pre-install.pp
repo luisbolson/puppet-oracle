@@ -4,7 +4,7 @@ $confdir = "$settings::confdir"
 
 #$oramem     = $memorysize_mb / 2
 
-File { backup => main, }
+File { backup => false, }
 
 $host_instances = {
   "${fqdn}" => {
