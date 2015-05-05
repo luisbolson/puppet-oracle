@@ -2,10 +2,6 @@ $pass = 'ora123'
 $salt = 'xyz'
 $oramem     = $memorysize_mb / 2
 
-
-$orapwdhash = generate('/bin/sh', '-c', "openssl passwd -1 -salt xyz $orapwd | tr -d '\n'")
-notice "$orapwdhash"
-
 $host_instances = {
   "${fqdn}" => {
     ip            => $ipaddress,
