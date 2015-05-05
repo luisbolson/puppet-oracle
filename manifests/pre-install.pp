@@ -4,7 +4,7 @@ $confdir = "$settings::confdir"
 
 #$oramem     = $memorysize_mb / 2
 
-file { 'puppet:///modules/oradb/':
+file { "${settings::confdir}/modules/oradb/":
   backup => false, }
 
 $host_instances = {
