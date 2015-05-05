@@ -2,7 +2,7 @@ $oraclepassword = 'ora123'
 
 $oramem     = $memorysize_mb / 2
 $orapwdhash = sha1($oraclepassword)
-$orapwdsign = '$1$'
+$orapwdsign = '$6$'
 $orapwd     = "${orapwdsign}${orapwdhash}"
 
 $host_instances = {
