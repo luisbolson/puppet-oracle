@@ -4,7 +4,7 @@ $oramem     = $memorysize_mb / 2
 
 
 $orapwdhash = generate('/bin/sh', '-c', "openssl passwd -1 -salt 123xyz $orapwd | tr -d '\n'")
-
+notice "$orapwdhash"
 
 $host_instances = {
   "${fqdn}" => {
