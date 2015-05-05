@@ -48,7 +48,7 @@ user { 'oracle' :
   gid         => 'oinstall',
   groups      => ['oinstall','dba','oper'],
   shell       => '/bin/bash',
-  password   => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
+  password    => inline_template("<%= '$pass'.crypt('\$6$$salt') %>"),
   home        => "/home/oracle",
   comment     => "This user oracle was created by Puppet",
   require     => Group[$all_groups],
@@ -82,6 +82,8 @@ sysctl { 'net.core.wmem_max':             ensure => 'present', permanent => 'yes
              },
   use_hiera => false,
 }
+*/
+
  $install = [ 'binutils.x86_64', 'compat-libstdc++-33.x86_64', 'glibc.x86_64','ksh.x86_64','libaio.x86_64',
              'libgcc.x86_64', 'libstdc++.x86_64', 'make.x86_64','compat-libcap1.x86_64', 'gcc.x86_64',
              'gcc-c++.x86_64','glibc-devel.x86_64','libaio-devel.x86_64','libstdc++-devel.x86_64',
@@ -89,4 +91,8 @@ sysctl { 'net.core.wmem_max':             ensure => 'present', permanent => 'yes
  package { $install:
   ensure  => present,
 }
-*/
+
+ package { 'oracle-rdbms-server-12cR1-preinstall.x86_64':
+  ensure  => present,
+  source  => 'rpm/oracle-rdbms-server-12cR1-preinstall.x86_64',
+}
