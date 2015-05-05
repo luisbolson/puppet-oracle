@@ -2,8 +2,6 @@ $pass = 'ora123'
 $salt = 'xyz'
 $confdir = "$settings::confdir"
 
-File { backup => false, }
-
 $host_instances = {
   "${fqdn}" => {
     ip            => $ipaddress,
