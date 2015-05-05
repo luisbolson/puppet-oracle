@@ -1,6 +1,6 @@
 $oramem = $memorysize_mb / 2
 $orapwd = sha1("ora123")
-notice "${orapwd}"
+notice '$1$'."${orapwd}"
 
 $host_instances = {
   "${fqdn}" => {
@@ -44,7 +44,7 @@ user { 'oracle' :
   gid         => 'oinstall',
   groups      => ['oinstall','dba','oper'],
   shell       => '/bin/bash',
-  password    => "${orapwd}",
+  password    => '$1$'."${orapwd}",
   home        => "/home/oracle",
   comment     => "This user oracle was created by Puppet",
   require     => Group[$all_groups],
