@@ -122,7 +122,6 @@ define oradb::installdb(
           group   => $group,
           require => Db_directory_structure["oracle structure ${version}"],
           before  => Exec["extract ${downloadDir}/${file1}"],
-          backup  => false,
         }
         # db file 2 installer zip
         file { "${downloadDir}/${file2}":
@@ -133,7 +132,6 @@ define oradb::installdb(
           group   => $group,
           require => File["${downloadDir}/${file1}"],
           before  => Exec["extract ${downloadDir}/${file2}"],
-          backup  => false,
         }
         $source = $downloadDir
       } else {
