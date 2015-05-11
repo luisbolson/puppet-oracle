@@ -30,6 +30,9 @@ define oradb::installdb(
   $cleanup_installfiles    = true,
 )
 {
+  
+  File { backup => false, }
+
   if ( $createUser == true ){
     fail("createUser parameter on installdb ${title} is removed from this oradb module, you need to create the oracle user and its groups yourself")
   }
